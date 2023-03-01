@@ -7,24 +7,24 @@ import {useHistory} from 'react-router-dom';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-
+  
   const dispatch = useDispatch();
   
   const [vehYear, setVehYear] = useState('');
   const [vehMake, setVehMake] = useState('');
   const [vehModel, setVehModel] = useState('');
   const history = useHistory();
-
+  
   function handleSubmit(event) {
-    event.preventDefault();
+      event.preventDefault();
 
-    dispatch({
-        type: 'ADD_VEHICLE',
-        payload: {vehYear, vehMake, vehModel}
-    })
-    history.push('')
-    console.log('vehicle information', vehYear, vehMake, vehModel);
-}
+      dispatch({
+          type: 'ADD_VEHICLE',
+          payload: {vehYear, vehMake, vehModel}
+      })
+      history.push('')
+      console.log('vehicle information', vehYear, vehMake, vehModel);
+  }
 
   return (
     <div className="container">
@@ -32,7 +32,7 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
 
       <h2>Select Your Vehicle</h2>
-
+      <p>{vehYear} {vehMake} {vehModel}</p>
       {/* if there are any vehicles that user has input display here */}
 
 

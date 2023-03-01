@@ -1,4 +1,4 @@
-const vehicleReducer = (state = {}, action) => {
+const vehicleReducer = (state = [], action) => {
     switch (action.type) {
       case 'ADD_VEHICLE':
         return action.payload;
@@ -7,6 +7,5 @@ const vehicleReducer = (state = {}, action) => {
     }
   };
   
-  // user will be on the redux state at:
-  // state.user
+
   export default vehicleReducer;
