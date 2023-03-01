@@ -14,7 +14,8 @@ function UserPage() {
   const [vehMake, setVehMake] = useState('');
   const [vehModel, setVehModel] = useState('');
   const history = useHistory();
-  
+  const vehicles = useSelector((store) => store.vehicleReducer);
+
   function handleSubmit(event) {
       event.preventDefault();
 
@@ -32,7 +33,13 @@ function UserPage() {
       <p>Your ID is: {user.id}</p>
 
       <h2>Select Your Vehicle</h2>
-      <p>{vehYear} {vehMake} {vehModel}</p>
+
+      {vehicles.map((vehicle, index) => {
+        return (
+          <p>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+        )
+      })}
+      {/* <p>{vehicle[0].year} {vehicle[0].make} {vehicle[0].model}</p> */}
       {/* if there are any vehicles that user has input display here */}
 
 

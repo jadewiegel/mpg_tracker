@@ -29,26 +29,20 @@ function* addVehicle(action){
             console.log(err);
             alert("something went wrong");
         }
-    // const vehSubmit = (event) => {
-    //     event.preventDefault();
-    //         axios.post('/api/vehicle', {
-    //         year: vehYear,
-    //         make: vehMake,
-    //         model: vehModel
-    //     }).then(response => {
-    //         console.log('post request success: ,', response)  
-    //         // history.push('/mainDetails'); this will need to push to the "main details" page
-         
-    //     }).catch(err => {
-    //         console.log('error in post request: ', err)
-    //     });
-    // }
 };
 
 function* getVehicle(action){
     console.log('in getVehicle')
     //axios get to vehicle from database
+try {
+    const vehicles = yield axios.get('/api/vehicle');
+    yield put({ type: 'SET_VEHICLE', payload: vehicles.data })
+} catch(err){
+    console.log('error in SAGA GET', err);
+    alert("issue with SAGA GET");
+}
     //pass data to the reducer with a put
+
 };
 
 // function* editVehicle(action){
