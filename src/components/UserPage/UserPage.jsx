@@ -63,3 +63,11 @@ function UserPage() {
 
 // this allows us to use <App /> in index.js
 export default UserPage;
+
+
+
+//post route saves into database
+//get route gets from database
+//add axios.get to saga
+//pass results to reducer
+//display info from reducer in component

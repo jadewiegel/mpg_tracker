@@ -8,6 +8,9 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // GET route code here
   console.log('in GET request, vehicle.router')
+  //switch to database
+  let sampleData = [{year: 2018, make: 'Ford', model:'F150'}];
+  res.send(sampleData);
 });
 
 /**
@@ -16,6 +19,8 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   // POST route code here
   console.log('in the server POST, vehicle router')
+  //TODO add data to the database
+  res.sendStatus(201);
 });
 
 module.exports = router;
