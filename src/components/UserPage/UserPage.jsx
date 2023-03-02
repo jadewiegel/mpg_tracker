@@ -16,6 +16,10 @@ function UserPage() {
   const history = useHistory();
   const vehicles = useSelector((store) => store.vehicleReducer);
 
+  useEffect(() => {
+    dispatch({ type: 'GET_VEHICLE' });
+  }, [dispatch]);
+
   function handleSubmit(event) {
       event.preventDefault();
 
@@ -36,7 +40,7 @@ function UserPage() {
 
       {vehicles.map((vehicle, index) => {
         return (
-          <p>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+          <p key={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</p>
         )
       })}
       {/* <p>{vehicle[0].year} {vehicle[0].make} {vehicle[0].model}</p> */}
