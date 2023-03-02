@@ -3,6 +3,8 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -40,7 +42,7 @@ function UserPage() {
 
       {vehicles.map((vehicle, index) => {
         return (
-          <p key={vehicle.id}>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+          <Link to='/mainDetails' key={vehicle.id}><p>{vehicle.year} {vehicle.make} {vehicle.model}</p></Link>
         )
       })}
       {/* <p>{vehicle[0].year} {vehicle[0].make} {vehicle[0].model}</p> */}
