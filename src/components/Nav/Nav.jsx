@@ -28,9 +28,9 @@ function Nav() {
               Vehicles Page
             </Link>
             
-            <Link className="navLink" to="/mainDetails">
+            {/* <Link className="navLink" to="/mainDetails">
               Main Details Page
-            </Link>
+            </Link> */}
             
             {/* <Link className="navLink" to="/info">
               Info Page
