@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 
 function UserPage() {
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   
   const dispatch = useDispatch();
@@ -22,6 +21,8 @@ function UserPage() {
     dispatch({ type: 'GET_VEHICLE' });
   }, [dispatch]);
 
+  //after hitting submit run this to save new vehicle info.
+
   function handleSubmit(event) {
       event.preventDefault();
 
@@ -35,19 +36,26 @@ function UserPage() {
 
   return (
     <div className="container">
+      {/* if there are any vehicles that user has input display here */}
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
 
       <h2>Select Your Vehicle</h2>
 
+    {vehicles.length > 0
+      ? <> 
+      {/* ^^this is only going to run once there is something in the array */}
       {vehicles.map((vehicle, index) => {
         return (
-          <Link to='/mainDetails' key={vehicle.id}><p>{vehicle.year} {vehicle.make} {vehicle.model}</p></Link>
+          <>
+            <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+            <button>Edit Vehicle</button> <button>Delete Vehicle</button>
+          </>
         )
       })}
-      {/* <p>{vehicle[0].year} {vehicle[0].make} {vehicle[0].model}</p> */}
-      {/* if there are any vehicles that user has input display here */}
-
+      </>
+      : null} 
+      {/* ^^this has the block do nothing if the array has nothing in it yet. */}
 
       <br />
       <form className="newVehicleInput" onSubmit={handleSubmit}>
@@ -76,11 +84,3 @@ function UserPage() {
 
 // this allows us to use <App /> in index.js
 export default UserPage;
-
-
-
-//post route saves into database
-//get route gets from database
-//add axios.get to saga
-//pass results to reducer
-//display info from reducer in component
