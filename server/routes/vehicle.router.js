@@ -22,14 +22,11 @@ router.get('/', (req, res) => {
 
 // get request for specific vehicle details on MainDetails page
 router.get('/details/:id', (req, res) => {
-  // GET route code here
   // console.log('in GET request, vehicle.router MainDetails', req.params.id);
-  //switch to database
-  // let sampleData = [{year: 2018, make: 'Ford', model:'F150'}];
-  const query = `SELECT * FROM "vehicle_info" WHERE "id" = $1`;
+  const query = `SELECT * FROM "vehicle_info" WHERE "id" = $1;`;
   pool.query(query, [req.params.id])
   .then( result => {
-    console.log('GET request result', result);
+    // console.log('GET request result', result);
     res.send(result.rows[0]);
   }).catch(err => {
     console.log('Error getting vehicles', err);
@@ -37,10 +34,24 @@ router.get('/details/:id', (req, res) => {
   })
 });
 
+//get request from database for fuelinputs
+router.get('/fuelInput/:id', (req, res) => {
+    console.log('in get request for fuelInputs to be on Main Details');
+    const query = `SELECT * FROM "fuel_info" WHERE "vehicle_id" = $1 ORDER BY "date" DESC;`;
+    pool.query(query, [req.params.id])
+  .then( result => {
+    console.log('result from GET for fuel inputs', result);
+    res.send(result.rows);
+  }).catch(err => {
+    console.log('error in GET for fuelInputs', err);
+    res.sendStatus(500);
+  })
+});
+
 //post route to add fuel input data to database
 router.post('/fuelInput/:id', (req, res) => {
-  console.log('in the server POST for fuel inputs', req.body);
-  console.log('vehicle id', req.params.id);
+  // console.log('in the server POST for fuel inputs', req.body);
+  // console.log('vehicle id', req.params.id);
   const insertFuelLog = `
   INSERT INTO "fuel_info" ("date", "odometer", "fuel_QTY", "price_per_gallon", "vehicle_id")
   VALUES ($1, $2, $3, $4, $5);`

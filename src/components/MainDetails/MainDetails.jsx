@@ -7,12 +7,19 @@ import { useHistory } from 'react-router-dom';
 
 function MainDetails() {
   const vehicle = useSelector((store) => store.vehicleReducer);
+  const mpgStats = useSelector((store) => store.fuelReducer);
   const {id} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
+  
+  console.log('mpg stats from reducer', mpgStats)
 
   useEffect(() => {
     dispatch({ type: 'VEHICLE_DETAILS', payload: id });
+  }, []);
+ 
+  useEffect(() => {
+    dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
   }, []);
 
   const clickHandler = () => {
@@ -32,7 +39,14 @@ function MainDetails() {
           <button onClick={clickHandler}>Add New Fill Up</button>
 
           {/* displays all mpg that has been logged */}
-
+          {mpgStats.map((mpgList, index) => {
+            return (
+              <>
+                <p>{mpgList.date} {mpgList.odometer} {mpgList.fuel_QTY} {mpgList.price_per_gallon}</p>
+                <button>Edit Vehicle</button> <button>Delete Vehicle</button>
+              </>
+            )
+            })}
         </div>
       )
  }

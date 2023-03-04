@@ -9,12 +9,28 @@ function* vehicleSaga(){
     yield takeEvery('GET_VEHICLE', getVehicle);
     yield takeEvery('VEHICLE_DETAILS', vehicleDetails);
     yield takeEvery('SET_FUEL_INPUTS', fuelInputs);
+    yield takeEvery('GET_FUEL_INPUTS', getFuelInputs);
     // yield takeEvery('EDIT_VEHICLE', editVehicle);
     // yield takeEvery('DELETE_VEHICLE', deleteVehicle);
 };
 
+
+function* getFuelInputs(action){
+    console.log('inside getFuelInputs saga', action.payload)
+    const id = action.payload;
+        //axios get to fuelinputs from database
+    try {
+        const vehicles = yield axios.get(`/api/vehicle/fuelInput/${id}`);
+        yield put({ type: 'DISPLAY_FUEL_INPUTS', payload: vehicles.data })
+    } catch(err){
+        console.log('error in SAGA GET', err);
+        alert("issue with SAGA GET");
+    }
+}
+
+//post saga to send data
 function* fuelInputs(action){
-    console.log('inside fuelInputs Saga', action.payload);
+    // console.log('inside fuelInputs Saga', action.payload);
     const id = action.payload.id;
     try {
         yield axios.post(`/api/vehicle/fuelInput/${id}`, {
@@ -31,6 +47,7 @@ function* fuelInputs(action){
         }
 }
 
+//get saga specific vehicle 
 function* vehicleDetails(action){
     // console.log('inside vehicleDetails generator function', action.payload);
     const id = action.payload;
