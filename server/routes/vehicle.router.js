@@ -6,7 +6,7 @@ const router = express.Router();
 // get request for all vehicles on the UserPage
 router.get('/', (req, res) => {
   // GET route code here
-  console.log('in GET request, vehicle.router UserPage')
+  // console.log('in GET request, vehicle.router UserPage')
   //switch to database
   // let sampleData = [{year: 2018, make: 'Ford', model:'F150'}];
   const query = `SELECT * FROM "vehicle_info" WHERE "user_id" = $1 ORDER BY "id" ASC`;
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
 // get request for specific vehicle details on MainDetails page
 router.get('/details/:id', (req, res) => {
   // GET route code here
-  console.log('in GET request, vehicle.router MainDetails', req.params.id);
+  // console.log('in GET request, vehicle.router MainDetails', req.params.id);
   //switch to database
   // let sampleData = [{year: 2018, make: 'Ford', model:'F150'}];
   const query = `SELECT * FROM "vehicle_info" WHERE "id" = $1`;
@@ -36,13 +36,27 @@ router.get('/details/:id', (req, res) => {
     res.sendStatus(500);
   })
 });
-/**
- * POST route template
- */
+
+//post route to add fuel input data to database
+router.post('/fuelInput/:id', (req, res) => {
+  console.log('in the server POST for fuel inputs', req.body);
+  console.log('vehicle id', req.params.id);
+  const insertFuelLog = `
+  INSERT INTO "fuel_info" ("date", "odometer", "fuel_QTY", "price_per_gallon", "vehicle_id")
+  VALUES ($1, $2, $3, $4, $5);`
+  pool.query(insertFuelLog, [req.body.date, req.body.odometer, req.body.fuel_QTY, req.body.price_per_gallon, req.params.id])
+  .then(result => {
+    console.log('new fuel log', result);
+    res.sendStatus(201);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
+//post route to add vehicles to the database
 router.post('/', (req, res) => {
-  // POST route code here
-  //TODO add data to the database
-  console.log('in the server POST, vehicle router', req.body);
+  // console.log('in the server POST, vehicle router', req.body);
   const insertVehicle = `
   INSERT INTO "vehicle_info" ("year", "make", "model", "user_id")
   VALUES ($1, $2, $3, $4);`
@@ -56,4 +70,6 @@ router.post('/', (req, res) => {
     res.sendStatus(500);
   });
 })
+
+
 module.exports = router;

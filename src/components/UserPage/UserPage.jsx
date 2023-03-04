@@ -3,7 +3,6 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
-import { Link } from 'react-router-dom';
 
 
 function UserPage() {

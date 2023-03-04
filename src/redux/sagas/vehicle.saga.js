@@ -8,12 +8,31 @@ function* vehicleSaga(){
     yield takeEvery('ADD_VEHICLE', addVehicle);
     yield takeEvery('GET_VEHICLE', getVehicle);
     yield takeEvery('VEHICLE_DETAILS', vehicleDetails);
+    yield takeEvery('SET_FUEL_INPUTS', fuelInputs);
     // yield takeEvery('EDIT_VEHICLE', editVehicle);
     // yield takeEvery('DELETE_VEHICLE', deleteVehicle);
 };
 
+function* fuelInputs(action){
+    console.log('inside fuelInputs Saga', action.payload);
+    const id = action.payload.id;
+    try {
+        yield axios.post(`/api/vehicle/fuelInput/${id}`, {
+                    date: action.payload.startDate,
+                    odometer: action.payload.odometer,
+                    fuel_QTY: action.payload.fuel_QTY,
+                    price_per_gallon: action.payload.price_per_gallon
+                })
+                //put an action to get vehicles
+                yield put({ type: 'VEHICLE_DETAILS', payload: id })
+        } catch(err){
+            console.log(err);
+            alert("something went wrong");
+        }
+}
+
 function* vehicleDetails(action){
-    console.log('inside vehicleDetails generator function', action.payload);
+    // console.log('inside vehicleDetails generator function', action.payload);
     const id = action.payload;
         //axios get to vehicle from database
     try {
@@ -27,7 +46,7 @@ function* vehicleDetails(action){
 
 //axios post to save in database
 function* addVehicle(action){
-    console.log('inside addVehicle generator function', action.payload)
+    // console.log('inside addVehicle generator function', action.payload)
    try {
         yield axios.post('/api/vehicle', {
                     year: action.payload.vehYear,
@@ -42,8 +61,8 @@ function* addVehicle(action){
         }
 };
 
-function* getVehicle(action){
-    console.log('in getVehicle')
+function* getVehicle(){
+    // console.log('in getVehicle')
     //axios get to vehicle from database
 try {
     const vehicles = yield axios.get('/api/vehicle');
