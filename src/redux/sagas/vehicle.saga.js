@@ -14,7 +14,7 @@ function* vehicleSaga(){
     // yield takeEvery('DELETE_VEHICLE', deleteVehicle);
 };
 
-
+//get saga for fuel inputs from server
 function* getFuelInputs(action){
     console.log('inside getFuelInputs saga', action.payload)
     const id = action.payload;
@@ -47,7 +47,7 @@ function* fuelInputs(action){
         }
 }
 
-//get saga specific vehicle 
+//get saga for specific vehicle 
 function* vehicleDetails(action){
     // console.log('inside vehicleDetails generator function', action.payload);
     const id = action.payload;
@@ -61,7 +61,7 @@ function* vehicleDetails(action){
     }
 }
 
-//axios post to save in database
+//post saga to send vehicle
 function* addVehicle(action){
     // console.log('inside addVehicle generator function', action.payload)
    try {
@@ -78,6 +78,7 @@ function* addVehicle(action){
         }
 };
 
+//get saga for vehicle
 function* getVehicle(){
     // console.log('in getVehicle')
     //axios get to vehicle from database

@@ -4,8 +4,6 @@ const vehicleReducer = (state = [], action) => {
         return action.payload;
       case 'DISPLAY_VEHICLE':
         return action.payload;
-      // case 'DISPLAY_FUEL_INPUTS':
-      //   return action.payload;
       default:
         return state;
     }

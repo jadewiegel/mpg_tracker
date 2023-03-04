@@ -16,9 +16,6 @@ function MainDetails() {
 
   useEffect(() => {
     dispatch({ type: 'VEHICLE_DETAILS', payload: id });
-  }, []);
- 
-  useEffect(() => {
     dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
   }, []);
 
@@ -33,7 +30,7 @@ function MainDetails() {
 
 
           {/* display vehicle that was selected */}
-          <p>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+          <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
 
           {/* button that takes user to fill up inputs Page*/}
           <button onClick={clickHandler}>Add New Fill Up</button>
@@ -42,8 +39,14 @@ function MainDetails() {
           {mpgStats.map((mpgList, index) => {
             return (
               <>
-                <p>{mpgList.date} {mpgList.odometer} {mpgList.fuel_QTY} {mpgList.price_per_gallon}</p>
-                <button>Edit Vehicle</button> <button>Delete Vehicle</button>
+              <div className='fuelInputs' >
+                <p>
+                  Date: {mpgList.date} <br />
+                  Odometer: {mpgList.odometer} <br />
+                  # of Gallons: {mpgList.fuel_QTY} <br />
+                  Price Per Gallon: {mpgList.price_per_gallon}</p>
+                <button>Edit Record</button> <button>Delete Record</button>
+              </div>
               </>
             )
             })}
