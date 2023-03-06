@@ -11,7 +11,7 @@ function* vehicleSaga(){
     yield takeEvery('SET_FUEL_INPUTS', fuelInputs);
     yield takeEvery('GET_FUEL_INPUTS', getFuelInputs);
     // yield takeEvery('EDIT_VEHICLE', editVehicle);
-    // yield takeEvery('DELETE_VEHICLE', deleteVehicle);
+    yield takeEvery('DELETE_VEHICLE', deleteVehicle);
 };
 
 //get saga for fuel inputs from server
@@ -82,13 +82,13 @@ function* addVehicle(action){
 function* getVehicle(){
     // console.log('in getVehicle')
     //axios get to vehicle from database
-try {
-    const vehicles = yield axios.get('/api/vehicle');
-    yield put({ type: 'SET_VEHICLE', payload: vehicles.data })
-} catch(err){
-    console.log('error in SAGA GET', err);
-    alert("issue with SAGA GET");
-}
+    try {
+        const vehicles = yield axios.get('/api/vehicle');
+        yield put({ type: 'SET_VEHICLE', payload: vehicles.data })
+    } catch(err){
+        console.log('error in SAGA GET', err);
+        alert("issue with SAGA GET");
+    }
     //pass data to the reducer with a put
 
 };
@@ -97,9 +97,17 @@ try {
 //     //axios put to save in database
 // };
 
-// function* deleteVehicle(action){
-//     //axios delete to database from database
-// };
+// axios delete to database from database
+function* deleteVehicle(action){
+    const vehicle = action.payload.vehicle.id;
+    try{
+        yield axios.delete(`/api/vehicle/details/${vehicle}`);
+        yield put({ type: 'GET_VEHICLE' })
+    } catch(err){
+        console.log('error in SAGA DELETE vehicle', err);
+        alert('issue with SAGA DELETE vehicle.')
+    }
+};
 
 
 export default vehicleSaga;

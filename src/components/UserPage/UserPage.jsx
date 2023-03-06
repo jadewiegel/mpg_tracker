@@ -21,7 +21,6 @@ function UserPage() {
   }, [dispatch]);
 
   //after hitting submit run this to save new vehicle info.
-
   function handleSubmit(event) {
       event.preventDefault();
 
@@ -31,6 +30,16 @@ function UserPage() {
       })
       history.push('')
       console.log('vehicle information', vehYear, vehMake, vehModel);
+  }
+
+  //clicking delete will run this delete function to remove vehicle.
+  function vehDeleteBtn(vehicle){
+    console.log('inside vehDeleteBtn', vehicle.id);
+
+    dispatch({
+      type: 'DELETE_VEHICLE',
+      payload: {vehicle}
+    })
   }
 
   return (
@@ -48,7 +57,7 @@ function UserPage() {
         return (
           <>
             <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
-            <button>Edit Vehicle</button> <button>Delete Vehicle</button>
+            <button>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
           </>
         )
       })}

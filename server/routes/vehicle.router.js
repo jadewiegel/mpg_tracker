@@ -82,5 +82,17 @@ router.post('/', (req, res) => {
   });
 })
 
+router.delete('/details/:id', (req, res) => {
+  const queryText = `DELETE FROM "vehicle_info" WHERE "id" = $1;`;
+  pool.query(queryText, [req.params.id])
+  .then((result) => {
+      console.log('in vehicle delete request', result)
+      res.sendStatus(204);
+  })
+  .catch((error) => {
+      console.log('error making query', error);
+      res.sendStatus(500);
+  });
+});
 
 module.exports = router;
