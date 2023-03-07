@@ -36,8 +36,8 @@ router.get('/details/:id', (req, res) => {
 
 //get request from database for fuelinputs
 router.get('/fuelInput/:id', (req, res) => {
-    console.log('in get request for fuelInputs to be on Main Details');
-    const query = `SELECT * FROM "fuel_info" WHERE "vehicle_id" = $1 ORDER BY "date" DESC;`;
+    console.log('in get request for fuelInputs to be on Main Details', req.params.id);
+    const query = `SELECT * FROM "fuel_info" WHERE "vehicle_id" = $1 ORDER BY "odometer" DESC;`;
     pool.query(query, [req.params.id])
   .then( result => {
     console.log('result from GET for fuel inputs', result);
@@ -82,8 +82,23 @@ router.post('/', (req, res) => {
   });
 })
 
+//delete route to delete vehicle from database
 router.delete('/details/:id', (req, res) => {
   const queryText = `DELETE FROM "vehicle_info" WHERE "id" = $1;`;
+  pool.query(queryText, [req.params.id])
+  .then((result) => {
+      console.log('in vehicle delete request', result)
+      res.sendStatus(204);
+  })
+  .catch((error) => {
+      console.log('error making query', error);
+      res.sendStatus(500);
+  });
+});
+
+// delete route to delete fuel input from database
+router.delete('/fuelInput/:id', (req, res) => {
+  const queryText = `DELETE FROM "fuel_info" WHERE "id" = $1;`;
   pool.query(queryText, [req.params.id])
   .then((result) => {
       console.log('in vehicle delete request', result)

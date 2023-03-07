@@ -19,6 +19,18 @@ function MainDetails() {
     dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
   }, []);
 
+  // need to do a math. likely need to take specific index id out of the array and then index-1 to get the previous 
+  // id and subtract them to get the miles traveled between fill ups. then divide by gallons put in to find mpg
+ 
+
+  function fuelLogDeleteBtn(mpgList){
+    console.log('inside fuelLogDeleteBtn', mpgList.id);
+    dispatch({
+      type: 'DELETE_FUEL_INPUT',
+      payload: {mpgList}
+    })
+  }
+
   const clickHandler = () => {
     history.push(`/FuelInputs/${id}`)
   }
@@ -36,20 +48,20 @@ function MainDetails() {
           <button onClick={clickHandler}>Add New Fill Up</button>
 
           {/* displays all mpg that has been logged */}
-          {mpgStats.map((mpgList, index) => {
-            return (
-              <>
-              <div className='fuelInputs' >
+          {mpgStats.map(mpgList => {
+            return (              
+              <div key={mpgList.id} className='fuelInputs' >
                 <p>
+                  MPG: <br />
                   Date: {mpgList.date} <br />
                   Odometer: {mpgList.odometer} <br />
                   # of Gallons: {mpgList.fuel_QTY} <br />
-                  Price Per Gallon: {mpgList.price_per_gallon}</p>
-                <button>Edit Record</button> <button>Delete Record</button>
-              </div>
-              </>
+                  Price Per Gallon: {mpgList.price_per_gallon} <br/>
+                  Cost of Fill up: </p>
+                <button>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
+              </div>              
             )
-            })}
+          })}
         </div>
       )
  }

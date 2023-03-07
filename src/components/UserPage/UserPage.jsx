@@ -55,10 +55,10 @@ function UserPage() {
       {/* ^^this is only going to run once there is something in the array */}
       {vehicles.map((vehicle, index) => {
         return (
-          <>
+          <div key={vehicle.id} className='vehicleDisplay'>
             <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
             <button>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
-          </>
+          </div>
         )
       })}
       </>
