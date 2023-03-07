@@ -99,6 +99,7 @@ function* getVehicle(){
 
 // axios delete to database from database
 function* deleteVehicle(action){
+    console.log('action.payload inside delete vehicle saga', action.payload);
     const vehicle = action.payload.vehicle.id;
     try{
         yield axios.delete(`/api/vehicle/details/${vehicle}`);
