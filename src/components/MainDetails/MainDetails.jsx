@@ -19,11 +19,11 @@ function MainDetails() {
     dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
   }, []);
 
-  // need to do a math. likely need to take specific index id out of the array and then index-1 to get the previous 
+  // need to do math. likely need to take specific index id out of the array and then index-1 to get the previous 
   // id and subtract them to get the miles traveled between fill ups. then divide by gallons put in to find mpg
  
 
-  function fuelLogDeleteBtn(mpgList){
+  function fuelLogDeleteBtn(mpgList, event){
     console.log('inside fuelLogDeleteBtn', mpgList.id);
     dispatch({
       type: 'DELETE_FUEL_INPUT',
