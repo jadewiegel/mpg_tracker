@@ -11,7 +11,6 @@ function MainDetails() {
   const {id} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  // const [mpgCalc, setmpgCalc] = useState(0);
 
   
   useEffect(() => {
@@ -22,11 +21,6 @@ function MainDetails() {
     dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
   }, [id])
   
-  
-  // const doMath = (number1, number2, gallons) => {
-  //   const mpgCalc = (number1 - number2)/gallons;
-  //   setmpgCalc(mpgCalc);
-  // } 
 
   
   // need to do math. likely need to take specific index id out of the array and then index-1 to get the previous 
@@ -40,6 +34,10 @@ function MainDetails() {
       type: 'DELETE_FUEL_INPUT',
       payload: {mpgList, id}
     })
+  }
+
+  const editFuelInputBtn = () => {
+    history.push(`/FuelInputs/${id}`)
   }
 
   const clickHandler = () => {
@@ -70,7 +68,7 @@ function MainDetails() {
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
                   Cost of Fill up: </p>
-                <button>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
+                <button onClick={() => {editFuelInputBtn(mpgList)}}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
               </div>              
             )
           })}
