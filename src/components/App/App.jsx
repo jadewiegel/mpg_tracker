@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MainDetails from '../MainDetails/MainDetails';
+import EditVehicle from '../EditVehicle/EditVehicle';
 
 import './App.css';
 
@@ -62,7 +63,7 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows FuelInputs else shows LoginPage
             exact
             path="/fuelInputs/:id"
           >
@@ -70,11 +71,19 @@ function App() {
           </ProtectedRoute>
 
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows MainDetails else shows LoginPage
             exact
             path="/mainDetails/:id"
           >
             <MainDetails />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows EditVehicle else shows LoginPage
+            exact
+            path="/editVehicle/:id"
+          >
+            <EditVehicle />
           </ProtectedRoute>
 
           <Route

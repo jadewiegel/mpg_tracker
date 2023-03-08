@@ -29,17 +29,26 @@ function UserPage() {
           payload: {vehYear, vehMake, vehModel}
       })
       history.push('')
-      console.log('vehicle information', vehYear, vehMake, vehModel);
+      // console.log('vehicle information', vehYear, vehMake, vehModel);
   }
 
   //clicking delete will run this delete function to remove vehicle.
   function vehDeleteBtn(vehicle){
-    console.log('inside vehDeleteBtn', vehicle.id);
+    // console.log('inside vehDeleteBtn', vehicle.id);
 
     dispatch({
       type: 'DELETE_VEHICLE',
       payload: {vehicle}
     })
+  }
+
+  function vehEditBtn(vehicle){
+    console.log('inside vehicle edit button', vehicle, vehicle.id);
+    dispatch({
+      type: 'EDIT_VEHICLE',
+      payload: {vehicle}
+    })
+    history.push(`/editVehicle/${vehicle.id}`)
   }
 
   return (
@@ -57,7 +66,7 @@ function UserPage() {
         return (
           <div key={vehicle.id} className='vehicleDisplay'>
             <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
-            <button>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
+            <button onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
           </div>
         )
       })}

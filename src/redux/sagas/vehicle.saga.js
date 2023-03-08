@@ -12,12 +12,12 @@ function* vehicleSaga(){
     yield takeEvery('GET_FUEL_INPUTS', getFuelInputs);
     yield takeEvery('DELETE_VEHICLE', deleteVehicle);
     yield takeEvery('DELETE_FUEL_INPUT', deleteFuelInput);
-    // yield takeEvery('EDIT_VEHICLE', editVehicle);
+    yield takeEvery('EDIT_VEHICLE', editVehicle);
 };
 
 //get saga for fuel inputs from server
 function* getFuelInputs(action){
-    console.log('inside getFuelInputs saga', action.payload)
+    // console.log('inside getFuelInputs saga', action.payload)
     const id = action.payload;
         //axios get to fuelinputs from database
     try {
@@ -31,7 +31,7 @@ function* getFuelInputs(action){
 
 //post saga to send data
 function* fuelInputs(action){
-    console.log('inside fuelInputs Saga', action.payload);
+    // console.log('inside fuelInputs Saga', action.payload);
     const id = action.payload.id;
     try {
         yield axios.post(`/api/vehicle/fuelInput/${id}`, {
@@ -94,13 +94,14 @@ function* getVehicle(){
 
 };
 
-// function* editVehicle(action){
-//     //axios put to save in database
-// };
+//axios put to edit vehicle in database
+function* editVehicle(action){
+    console.log('inside editVehicle SAGA', action.payload)
+};
 
 // axios delete to delete vehicle from database
 function* deleteVehicle(action){
-    console.log('action.payload inside delete vehicle saga', action.payload);
+    // console.log('action.payload inside delete vehicle saga', action.payload);
     const vehicle = action.payload.vehicle.id;
     try{
         yield axios.delete(`/api/vehicle/details/${vehicle}`);
@@ -113,11 +114,12 @@ function* deleteVehicle(action){
 
 // axios delete to delete fuel log from database
 function* deleteFuelInput(action){
-    console.log('action.payload inside delete fuelInputs saga', action.payload.mpgList.id);
+    // console.log('action.payload inside delete fuelInputs saga', action.payload.mpgList.id);
     const mpgList = action.payload.mpgList.id;
+    const id = action.payload.id
     try{
         yield axios.delete(`/api/vehicle/fuelInput/${mpgList}`);
-        yield put({ type: 'GET_FUEL_INPUTS', payload: action.payload.mpgList.id })
+        yield put({ type: 'GET_FUEL_INPUTS', payload: id })
     } catch(err){
         console.log('error in SAGA DELETE vehicle', err);
         alert('issue with SAGA DELETE vehicle.')

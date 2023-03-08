@@ -11,23 +11,34 @@ function MainDetails() {
   const {id} = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  
-  console.log('mpg stats from reducer', mpgStats)
+  // const [mpgCalc, setmpgCalc] = useState(0);
 
+  
   useEffect(() => {
     dispatch({ type: 'VEHICLE_DETAILS', payload: id });
+  }, [id]);
+  
+  useEffect(() => {
     dispatch({ type: 'GET_FUEL_INPUTS', payload: id });
-  }, []);
+  }, [id])
+  
+  
+  // const doMath = (number1, number2, gallons) => {
+  //   const mpgCalc = (number1 - number2)/gallons;
+  //   setmpgCalc(mpgCalc);
+  // } 
 
+  
   // need to do math. likely need to take specific index id out of the array and then index-1 to get the previous 
   // id and subtract them to get the miles traveled between fill ups. then divide by gallons put in to find mpg
- 
+  
+  
 
-  function fuelLogDeleteBtn(mpgList, event){
+  function fuelLogDeleteBtn(mpgList){
     console.log('inside fuelLogDeleteBtn', mpgList.id);
     dispatch({
       type: 'DELETE_FUEL_INPUT',
-      payload: {mpgList}
+      payload: {mpgList, id}
     })
   }
 
@@ -37,7 +48,8 @@ function MainDetails() {
   
   {/* {vehicle.map((vehicle, index) => { */}
       return (
-        <div className="container">
+       <div className="container">
+        
           {/* 3 boxes for lest mpg/average mpg/best mpg */}
 
 
