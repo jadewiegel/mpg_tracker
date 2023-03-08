@@ -97,13 +97,15 @@ function* getVehicle(){
 //axios put to edit vehicle in database
 function* editVehicle(action){
     console.log('inside editVehicle SAGA', action.payload)
-    const vehicle = action.payload.vehicle.id;
+    const vehicle = action.payload.id;
     try{
-        yield axios.put(`/api/vehicle/edit/${vehicle}`);
-        yield put({ type: 'GET_VEHICLE' })
+        yield axios.put(`/api/vehicle/edit/${vehicle}`, action.payload);
+        if (action.history) {
+            action.history.goBack();
+        }
+        // yield put({ type: 'GET_VEHICLE' })
     } catch(err){
         console.log('error in PUT SAGA to edit vehicle', err);
-        alert('issue with SAGA PUT vehicle')
     }
 };
 

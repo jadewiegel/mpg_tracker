@@ -112,9 +112,9 @@ router.delete('/fuelInput/:id', (req, res) => {
 
 // put route to edit vehicle info
 router.put('/edit/:id', (req, res) => {
-  const queryText = `UPDATE "vehicle_info SET "year" = $1, "make" = $2, "model" = $3 WHERE "id" = $4;`;
-  console.log('put request req', req.body.year, req.body.make, req.body.model, req.user.id)
-  pool.query(queryText, [req.body.year, req.body.make, req.body.model, req.user.id])
+  console.log('put request req', req.body.vehYear, req.body.vehMake, req.body.vehModel, req.params.id)
+  const queryText = `UPDATE "vehicle_info" SET "year" = $1, "make" = $2, "model" = $3 WHERE "id" = $4;`;
+  pool.query(queryText, [req.body.vehYear, req.body.vehMake, req.body.vehModel, req.params.id])
   .then(result => {
     console.log('updated info', result);
     res.sendStatus(201);
@@ -125,4 +125,3 @@ router.put('/edit/:id', (req, res) => {
 })
 
 module.exports = router;
-//year make model

@@ -44,10 +44,10 @@ function UserPage() {
 
   function vehEditBtn(vehicle){
     console.log('inside vehicle edit button', vehicle, vehicle.id);
-    dispatch({
-      type: 'EDIT_VEHICLE',
-      payload: {vehicle}
-    })
+    // dispatch({
+    //   // type: 'EDIT_VEHICLE',
+    //   payload: {vehicle}
+    // })
     history.push(`/editVehicle/${vehicle.id}`)
   }
 
