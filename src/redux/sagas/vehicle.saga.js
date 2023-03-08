@@ -97,6 +97,14 @@ function* getVehicle(){
 //axios put to edit vehicle in database
 function* editVehicle(action){
     console.log('inside editVehicle SAGA', action.payload)
+    const vehicle = action.payload.vehicle.id;
+    try{
+        yield axios.put(`/api/vehicle/edit/${vehicle}`);
+        yield put({ type: 'GET_VEHICLE' })
+    } catch(err){
+        console.log('error in PUT SAGA to edit vehicle', err);
+        alert('issue with SAGA PUT vehicle')
+    }
 };
 
 // axios delete to delete vehicle from database

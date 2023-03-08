@@ -110,4 +110,19 @@ router.delete('/fuelInput/:id', (req, res) => {
   });
 });
 
+// put route to edit vehicle info
+router.put('/edit/:id', (req, res) => {
+  const queryText = `UPDATE "vehicle_info SET "year" = $1, "make" = $2, "model" = $3 WHERE "id" = $4;`;
+  console.log('put request req', req.body.year, req.body.make, req.body.model, req.user.id)
+  pool.query(queryText, [req.body.year, req.body.make, req.body.model, req.user.id])
+  .then(result => {
+    console.log('updated info', result);
+    res.sendStatus(201);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
 module.exports = router;
+//year make model
