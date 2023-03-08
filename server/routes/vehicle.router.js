@@ -112,9 +112,23 @@ router.delete('/fuelInput/:id', (req, res) => {
 
 // put route to edit vehicle info
 router.put('/edit/:id', (req, res) => {
-  console.log('put request req', req.body.vehYear, req.body.vehMake, req.body.vehModel, req.params.id)
+  // console.log('put request req', req.body.vehYear, req.body.vehMake, req.body.vehModel, req.params.id)
   const queryText = `UPDATE "vehicle_info" SET "year" = $1, "make" = $2, "model" = $3 WHERE "id" = $4;`;
   pool.query(queryText, [req.body.vehYear, req.body.vehMake, req.body.vehModel, req.params.id])
+  .then(result => {
+    console.log('updated info', result);
+    res.sendStatus(201);
+  }).catch(err => {
+    console.log(err);
+    res.sendStatus(500);
+  })
+})
+
+// put route to edit fuel inputs
+router.put('/editFuelInput/:id', (req, res) => {
+  console.log('put request req', req.body.startDate, req.body.vehOdometer, req.body.fuelGallons, req.body.pricePerGallon, req.params.id)
+  const queryText = `UPDATE "fuel_info" SET "date" = $1, "odometer" = $2, "fuel_QTY" = $3, "price_per_gallon" = $4 WHERE "id" = $5;`;
+  pool.query(queryText, [req.body.startDate, req.body.vehOdometer, req.body.fuelGallons, req.body.pricePerGallon, req.params.id])
   .then(result => {
     console.log('updated info', result);
     res.sendStatus(201);

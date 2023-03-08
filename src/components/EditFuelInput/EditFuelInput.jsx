@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
-function FuelInputs() {
+function EditFuelInputs() {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -23,15 +23,15 @@ function FuelInputs() {
   useEffect(() => {
     
     if (id) {
-      console.log('inside edit fuel inputs id', mpgStats)
+      console.log('inside edit fuel inputs id', id)
       axios.get(`/api/vehicle/fuelInput/${id}`)
       .then(response => {
           console.log('response fuelinput edit page', response.data);
             const mpgInfo = response.data;
-            setStartDate(mpgInfo.date);
-            setVehOdometer(mpgInfo.odometer);
-            setFuelGallons(mpgInfo.fuel_QTY);
-            setPricePerGallon(mpgInfo.price_per_gallon);
+            // setStartDate(mpgInfo.date);
+            // setVehOdometer(mpgInfo.odometer);
+            // setFuelGallons(mpgInfo.fuel_QTY);
+            // setPricePerGallon(mpgInfo.price_per_gallon);
         }).catch(err => {
             console.log('error in get request in editvehicle', err)
             alert('error in get request inside EditVehicle')
@@ -39,30 +39,22 @@ function FuelInputs() {
     }
 }, [id])
 
-  function handleSubmit(event) {
+function handleSubmit(event) {
     event.preventDefault();
-
-    const odometer = Number(vehOdometer);
-    const fuel_QTY = Number(fuelGallons);
-    const price_per_gallon = Number(pricePerGallon);
-
-
-    console.log('fuel input console', startDate, odometer, fuel_QTY, price_per_gallon, id);
+    if(id) {
     dispatch({
-        type: 'SET_FUEL_INPUTS',
-        payload: {startDate, odometer, fuel_QTY, price_per_gallon, id}
-    })
-    console.log('fuel fill up info', startDate, odometer, fuel_QTY, price_per_gallon);
-    history.push(`/mainDetails/${id}`)
-  }
+        type: 'EDIT_FUEL_INPUT',
+        payload: {startDate, vehOdometer, fuelGallons, pricePerGallon, id}, history
+    });
+}}
 
-  return (
+return (
     <>
     <button onClick={() => history.goBack()}>Back to Details</button>
     <div className="container">
-      <h2>Input Fuel Stop Info</h2>
+      <h2>Edit Fuel Record</h2>
 
-    <form className="newFuelInput" onSubmit={handleSubmit}>
+    <form className="editFuelInput" onSubmit={handleSubmit}>
 
 
         {/* input for date of fill up */}
@@ -84,6 +76,7 @@ function FuelInputs() {
     </div>
     </>
   );
+
 }
 
-export default FuelInputs;
+export default EditFuelInputs;

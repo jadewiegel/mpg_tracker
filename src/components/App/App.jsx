@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import MainDetails from '../MainDetails/MainDetails';
 import EditVehicle from '../EditVehicle/EditVehicle';
+import EditFuelInputs from '../EditFuelInput/EditFuelInput';
 
 import './App.css';
 
@@ -84,6 +85,14 @@ function App() {
             path="/editVehicle/:id"
           >
             <EditVehicle />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows EditVehicle else shows LoginPage
+            exact
+            path="/editFuelInput/:id"
+          >
+            <EditFuelInputs />
           </ProtectedRoute>
 
           <Route

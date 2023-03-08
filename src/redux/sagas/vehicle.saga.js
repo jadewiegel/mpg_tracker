@@ -13,6 +13,7 @@ function* vehicleSaga(){
     yield takeEvery('DELETE_VEHICLE', deleteVehicle);
     yield takeEvery('DELETE_FUEL_INPUT', deleteFuelInput);
     yield takeEvery('EDIT_VEHICLE', editVehicle);
+    yield takeEvery('EDIT_FUEL_INPUT', editFuelInput)
 };
 
 //get saga for fuel inputs from server
@@ -59,6 +60,21 @@ function* vehicleDetails(action){
     } catch(err){
         console.log('error in SAGA GET', err);
         alert("issue with SAGA GET");
+    }
+}
+
+//edit saga to edit specific fuel input
+function* editFuelInput(action){
+    console.log('inside editFuelInput SAGA', action.payload);
+    const mpgStat = action.payload.id;
+    try{
+        yield axios.put(`/api/vehicle/editFuelInput/${mpgStat}`, action.payload);
+        if (action.history) {
+            action.history.goBack();
+        }
+        // yield put({ type: 'GET_VEHICLE' })
+    } catch(err){
+        console.log('error in PUT SAGA to edit vehicle', err);
     }
 }
 

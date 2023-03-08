@@ -68,7 +68,7 @@ function MainDetails() {
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
                   Cost of Fill up: </p>
-                <button onClick={() => {editFuelInputBtn(mpgList)}}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
+                <button onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
               </div>              
             )
           })}
