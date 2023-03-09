@@ -7,12 +7,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 
 function EditFuelInputs() {
-  const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const history = useHistory();
   const {id} = useParams();
-
-  const mpgStats = useSelector((store) => store.fuelReducer);
 
   const [startDate, setStartDate] = useState(new Date());
   const [vehOdometer, setVehOdometer] = useState('');
@@ -51,11 +48,11 @@ function handleSubmit(event) {
 return (
     <>
     <button onClick={() => history.goBack()}>Back to Details</button>
+
     <div className="container">
       <h2>Edit Fuel Record</h2>
 
-    <form className="editFuelInput" onSubmit={handleSubmit}>
-
+      <form className="editFuelInput" onSubmit={handleSubmit}>
 
         {/* input for date of fill up */}
         <p>Select Date of Fill Up</p><DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />

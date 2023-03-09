@@ -29,13 +29,10 @@ function UserPage() {
           payload: {vehYear, vehMake, vehModel}
       })
       history.push('')
-      // console.log('vehicle information', vehYear, vehMake, vehModel);
   }
 
   //clicking delete will run this delete function to remove vehicle.
   function vehDeleteBtn(vehicle){
-    // console.log('inside vehDeleteBtn', vehicle.id);
-
     dispatch({
       type: 'DELETE_VEHICLE',
       payload: {vehicle}
@@ -43,11 +40,6 @@ function UserPage() {
   }
 
   function vehEditBtn(vehicle){
-    console.log('inside vehicle edit button', vehicle, vehicle.id);
-    // dispatch({
-    //   // type: 'EDIT_VEHICLE',
-    //   payload: {vehicle}
-    // })
     history.push(`/editVehicle/${vehicle.id}`)
   }
 
@@ -55,24 +47,23 @@ function UserPage() {
     <div className="container">
       {/* if there are any vehicles that user has input display here */}
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
 
       <h2>Select Your Vehicle</h2>
 
-    {vehicles.length > 0
-      ? <> 
-      {/* ^^this is only going to run once there is something in the array */}
-      {vehicles.map((vehicle, index) => {
-        return (
-          <div key={vehicle.id} className='vehicleDisplay'>
-            <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
-            <button onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
-          </div>
-        )
-      })}
-      </>
-      : null} 
-      {/* ^^this has the block do nothing if the array has nothing in it yet. */}
+      {vehicles.length > 0
+        ? <> 
+          {/* ^^this is only going to run once there is something in the array */}
+          {vehicles.map((vehicle, index) => {
+            return (
+              <div key={vehicle.id} className='vehicleDisplay'>
+                <p onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+                <button onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
+              </div>
+            )
+          })}
+        </>
+        : null} 
+      {/* ^^this ": null" has the block do nothing if the array has nothing in it yet. */}
 
       <br />
       <form className="newVehicleInput" onSubmit={handleSubmit}>

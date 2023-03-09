@@ -26,15 +26,7 @@ function Nav() {
           <>
             <Link className="navLink" to="/user">
               Vehicles Page
-            </Link>
-            
-            {/* <Link className="navLink" to="/mainDetails">
-              Main Details Page
-            </Link> */}
-            
-            {/* <Link className="navLink" to="/info">
-              Info Page
-            </Link>             */}
+            </Link>          
 
             <LogOutButton className="navLink" />
           </>

@@ -88,7 +88,7 @@ function App() {
           </ProtectedRoute>
           
           <ProtectedRoute
-            // logged in shows EditVehicle else shows LoginPage
+            // logged in shows EditFuelInputs else shows LoginPage
             exact
             path="/editFuelInput/:id"
           >

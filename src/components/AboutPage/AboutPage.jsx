@@ -9,7 +9,9 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>This MPG tracker is an app that will allow you to keep track of all your fuel inputs. 
+           Each input logged will also calculate how much your tank of fuel costs for tracking, it will also
+           calculate what the previous tank got for MPG.</p>
       </div>
     </div>
   );

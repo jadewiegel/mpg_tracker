@@ -33,7 +33,6 @@ function EditVehicle (){
             })
         }
     }, [id])
-
   
     function handleSubmit(event) {
         event.preventDefault();
@@ -47,23 +46,25 @@ function EditVehicle (){
         return (
             <>
                 <h2>Edit Vehicle Page</h2>
-                <form className="editVehicleInput" onSubmit={handleSubmit}>
-        
-                {/* input for vehicle year */}
-                <input value={vehYear} placeholder={vehicles.year} onChange={(event) => setVehYear(event.target.value)} /><br />
-        
-                {/* input for vehicle make */}
-                <input value={vehMake} placeholder={vehMake} onChange={(event) => setVehMake(event.target.value)} /><br />
-        
-                {/* input for vehicle model */}
-                <input value={vehModel} placeholder={vehModel} onChange={(event) => setVehModel(event.target.value)} /><br />
-        
-                {/* button to submit vehicle */}
-                <button type="Submit">Submit</button>
+                <button onClick={() => history.goBack()}>Back to Vehicles</button>
+
+                    <form className="editVehicleInput" onSubmit={handleSubmit}>
+            
+                    {/* input for vehicle year */}
+                    <input value={vehYear} placeholder={vehicles.year} onChange={(event) => setVehYear(event.target.value)} /><br />
+            
+                    {/* input for vehicle make */}
+                    <input value={vehMake} placeholder={vehMake} onChange={(event) => setVehMake(event.target.value)} /><br />
+            
+                    {/* input for vehicle model */}
+                    <input value={vehModel} placeholder={vehModel} onChange={(event) => setVehModel(event.target.value)} /><br />
+            
+                    {/* button to submit vehicle */}
+                    <button type="Submit">Submit</button>
         
             </form>
           </>
-          );
+        );
         
 }
 
