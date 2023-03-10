@@ -12,6 +12,7 @@ function MainDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   
+  
   useEffect(() => {
     dispatch({ type: 'VEHICLE_DETAILS', payload: id });
   }, [id]);
@@ -58,14 +59,21 @@ function MainDetails() {
               style: 'currency',
               currency: 'USD',
             });
+
+          
+            const mpgInfo = mpgList.date;
+            const date = new Date(mpgInfo)
+            const displayDate = (date.toLocaleDateString("en-US"))
+
             console.log('mpgList', mpgList.fuel_QTY, Number(currencyToNumber.replace(/[^0-9.-]+/g,"")));
             const costPerGallon = mpgList.fuel_QTY * Number(currencyToNumber.replace(/[^0-9.-]+/g,""));
             const numberToCurrency = USDollar.format(costPerGallon)
+            console.log('display date for return', date);
             return (              
               <div key={mpgList.id} className='fuelInputs' >
                 <p>
                   MPG: <br />
-                  Date: {mpgList.date} <br />
+                  Date: {displayDate} <br />
                   Odometer: {mpgList.odometer} <br />
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
