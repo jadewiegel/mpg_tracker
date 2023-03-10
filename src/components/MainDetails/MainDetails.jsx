@@ -53,8 +53,14 @@ function MainDetails() {
 
           {/* displays all mpg that has been logged */}
           {mpgStats.map(mpgList => {
-            console.log('mpgList', mpgList.fuel_QTY, mpgList.price_per_gallon)
-            const costPerGallon = mpgList.fuel_QTY * mpgList.price_per_gallon;
+            const currencyToNumber = mpgList.price_per_gallon;
+            const USDollar = new Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
+            console.log('mpgList', mpgList.fuel_QTY, Number(currencyToNumber.replace(/[^0-9.-]+/g,"")));
+            const costPerGallon = mpgList.fuel_QTY * Number(currencyToNumber.replace(/[^0-9.-]+/g,""));
+            const numberToCurrency = USDollar.format(costPerGallon)
             return (              
               <div key={mpgList.id} className='fuelInputs' >
                 <p>
@@ -63,7 +69,7 @@ function MainDetails() {
                   Odometer: {mpgList.odometer} <br />
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
-                  Cost of Fill up: {costPerGallon}</p>
+                  Cost of Fill up: {numberToCurrency}</p>
                 <button onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
               </div>              
             )
