@@ -36,7 +36,7 @@ router.get('/details/:id', (req, res) => {
 
 //get request from database for fuelinputs
 router.get('/fuelInput/:id', (req, res) => {
-    console.log('in get request for fuelInputs to be on Main Details', req.params.id);
+    console.log('in get request for fuelInputs to be on Main Details', req.body.id);
     const query = `SELECT * FROM "fuel_info" WHERE "vehicle_id" = $1 ORDER BY "odometer" DESC;`;
     pool.query(query, [req.params.id])
   .then( result => {
@@ -46,6 +46,20 @@ router.get('/fuelInput/:id', (req, res) => {
     console.log('error in GET for fuelInputs', err);
     res.sendStatus(500);
   })
+});
+
+// get request from database for specific fuelinput
+router.get('/editFuelInput/:id', (req, res) => {
+  console.log('in get request for specific fuelInputs to be on edit fuel input', req.params.id);
+  const query = `SELECT * FROM "fuel_info" WHERE "id" = $1;`;
+  pool.query(query, [req.params.id])
+.then( result => {
+  console.log('result from GET for fuel inputs', result);
+  res.send(result.rows);
+}).catch(err => {
+  console.log('error in GET for fuelInputs', err);
+  res.sendStatus(500);
+})
 });
 
 //post route to add fuel input data to database

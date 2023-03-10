@@ -41,7 +41,9 @@ function MainDetails() {
        <div className="container">
         
           {/* 3 boxes for lest mpg/average mpg/best mpg */}
-
+          <h3>Highest MPG: </h3>
+          <h3>Average MPG: </h3>
+          <h3>Lowest MPG: </h3>
 
           {/* display vehicle that was selected */}
           <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
@@ -51,6 +53,8 @@ function MainDetails() {
 
           {/* displays all mpg that has been logged */}
           {mpgStats.map(mpgList => {
+            console.log('mpgList', mpgList.fuel_QTY, mpgList.price_per_gallon)
+            const costPerGallon = mpgList.fuel_QTY * mpgList.price_per_gallon;
             return (              
               <div key={mpgList.id} className='fuelInputs' >
                 <p>
@@ -59,7 +63,7 @@ function MainDetails() {
                   Odometer: {mpgList.odometer} <br />
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
-                  Cost of Fill up: </p>
+                  Cost of Fill up: {costPerGallon}</p>
                 <button onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
               </div>              
             )

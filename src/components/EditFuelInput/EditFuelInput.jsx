@@ -12,28 +12,26 @@ function EditFuelInputs() {
   const {id} = useParams();
 
   const [startDate, setStartDate] = useState(new Date());
-  const [vehOdometer, setVehOdometer] = useState('');
-  const [fuelGallons, setFuelGallons] = useState('');
-  const [pricePerGallon, setPricePerGallon] = useState('');
+  const [vehOdometer, setVehOdometer] = useState(0);
+  const [fuelGallons, setFuelGallons] = useState(0);
+  const [pricePerGallon, setPricePerGallon] = useState(0);
 
 
   useEffect(() => {
-    
-    if (id) {
       console.log('inside edit fuel inputs id', id)
-      axios.get(`/api/vehicle/fuelInput/${id}`)
+      axios.get(`/api/vehicle/editFuelInput/${id}`)
       .then(response => {
-          console.log('response fuelinput edit page', response.data);
-            const mpgInfo = response.data;
-            // setStartDate(mpgInfo.date);
-            // setVehOdometer(mpgInfo.odometer);
-            // setFuelGallons(mpgInfo.fuel_QTY);
-            // setPricePerGallon(mpgInfo.price_per_gallon);
+            console.log('response fuelinput edit page', response.data);
+            const mpgInfo = response.data[0];
+            const date = new Date(mpgInfo.date)
+            setStartDate(date);
+            setVehOdometer(mpgInfo.odometer);
+            setFuelGallons(mpgInfo.fuel_QTY);
+            setPricePerGallon(mpgInfo.price_per_gallon);
         }).catch(err => {
             console.log('error in get request in editvehicle', err)
             alert('error in get request inside EditVehicle')
         })
-    }
 }, [id])
 
 function handleSubmit(event) {
@@ -45,6 +43,7 @@ function handleSubmit(event) {
     });
 }}
 
+// if (vehOdometer != 0){
 return (
     <>
     <button onClick={() => history.goBack()}>Back to Details</button>
@@ -73,7 +72,7 @@ return (
     </div>
     </>
   );
-
 }
+// }
 
 export default EditFuelInputs;

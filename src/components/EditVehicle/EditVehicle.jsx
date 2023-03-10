@@ -23,6 +23,7 @@ function EditVehicle (){
         if (id) {
             axios.get(`/api/vehicle/details/${id}`)
             .then(response => {
+                console.log('response from get in edit vehicle', response.data)
                 const vehicle = response.data;
                 setVehYear(vehicle.year);
                 setVehMake(vehicle.make);

@@ -23,6 +23,7 @@ function FuelInputs() {
     if (id) {
       axios.get(`/api/vehicle/fuelInput/${id}`)
       .then(response => {
+        console.log('get request for edit fuel inputs', response.data)
             const mpgInfo = response.data;
             setStartDate(mpgInfo.date);
             setVehOdometer(mpgInfo.odometer);
@@ -61,13 +62,13 @@ function FuelInputs() {
           <p>Select Date of Fill Up</p><DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 
           {/* input for vehicle odometer at fill up */}
-          <p>Odometer Reading </p><input value={vehOdometer} placeholder="Enter Odometer" onChange={(event) => setVehOdometer(event.target.value)} /><br />
+          <p>Odometer Reading </p><input value={vehOdometer} placeholder="Vehicle Odometer" onChange={(event) => setVehOdometer(event.target.value)} /><br />
 
           {/* input for number of gallons at fill up */}
-          <p>Gallons Quantity</p><input value={fuelGallons} placeholder="Number of Gallons" onChange={(event) => setFuelGallons(event.target.value)} /><br />
+          <p>Gallons Quantity</p><input defaultValue={fuelGallons} placeholder="Number of Gallons" onChange={(event) => setFuelGallons(event.target.value)} /><br />
 
           {/* input for price per gallon */}
-          <p>Price Per Gallon</p><input value={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
+          <p>Price Per Gallon</p><input defaultValue={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
 
           {/* button to submit vehicle */}
           <button type="Submit">Submit</button>
