@@ -72,6 +72,20 @@ function MainDetails() {
     return mpgArray.reduce((a,b) => Math.max(a,b), -Infinity);
   }
 
+  function lowestMPG(){
+    const mpgArray = [];
+    for(let index=0;index<mpgStats.length-1; index++){
+      let item = mpgStats[index];
+      let mpg = 0;
+      let mpgCurrent = item.odometer;
+      let mpgPrevious = mpgStats[index+1].odometer;
+      let gallons = item.fuel_QTY;
+      mpg = Math.round((mpgCurrent - mpgPrevious) / gallons * 100)/100;
+      mpgArray.push(mpg);
+    }
+    return mpgArray.reduce((a,b) => Math.min(a,b), +Infinity);
+  }
+
       return (
        <div className="container">
         
@@ -79,7 +93,7 @@ function MainDetails() {
           {/* 3 boxes for lest mpg/average mpg/best mpg */}
           <h3>Highest MPG: {highestMPG()}</h3>
           <h3>Average MPG: </h3>
-          <h3>Lowest MPG: </h3>
+          <h3>Lowest MPG: {lowestMPG()}</h3>
 
           {/* display vehicle that was selected */}
           <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
