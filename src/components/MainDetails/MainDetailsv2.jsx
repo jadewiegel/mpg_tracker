@@ -13,10 +13,10 @@ function MainDetails() {
   const dispatch = useDispatch();
   const history = useHistory();
   const testArray = [5,2,8,34,7,6];
+  const mpgArray = [];
   const highestNumber = testArray.reduce((a,b) => Math.max(a,b), -Infinity);
   const lowestNumber = testArray.reduce((a,b) => Math.min(a,b), +Infinity);
-  const [mpgCalc, setMPGCalc] = useState([]);
-  // const [displayArray, setDisplayArray] = useState([]);
+  const [displayArray, setDisplayArray] = useState([]);
 
 
   useEffect(() => {
@@ -42,17 +42,42 @@ function MainDetails() {
   const clickHandler = () => {
     history.push(`/FuelInputs/${id}`)
   }
+
+  function calculateMPG(item, index){
+      if(index < mpgStats.length-1){
+      console.log('item in caluclate mpg', item.odometer, index+1, mpgStats[index+1].odometer);
+      let mpg = item.odometer;
+      let mpgCurrent = item.odometer;
+      let mpgPrevious = mpgStats[index+1].odometer;
+      let gallons = item.fuel_QTY;
+      mpg = Math.round((mpgCurrent - mpgPrevious) / gallons * 100)/100;
+      console.log('mpg return', mpg);
+      return mpg;
+    }else {
+    return 0;
+    }
+  }
   
+  function highestMPG(){
+    const mpgArray = [];
+    for(let index=0;index<mpgStats.length-1; index++){
+      let item = mpgStats[index];
+      let mpg = 0;
+      let mpgCurrent = item.odometer;
+      let mpgPrevious = mpgStats[index+1].odometer;
+      let gallons = item.fuel_QTY;
+      mpg = Math.round((mpgCurrent - mpgPrevious) / gallons * 100)/100;
+      mpgArray.push(mpg);
+    }
+    return mpgArray.reduce((a,b) => Math.max(a,b), -Infinity);
+  }
+
       return (
        <div className="container">
         
 
-        
-          <p>{highestNumber}</p>
-          <p>{lowestNumber}</p>
-
           {/* 3 boxes for lest mpg/average mpg/best mpg */}
-          <h3>Highest MPG: </h3>
+          <h3>Highest MPG: {highestMPG()}</h3>
           <h3>Average MPG: </h3>
           <h3>Lowest MPG: </h3>
 
@@ -76,41 +101,25 @@ function MainDetails() {
             const displayDate = (date.toLocaleDateString("en-US"))
 
 
-            console.log('mpgList', mpgList.fuel_QTY, Number(currencyToNumber.replace(/[^0-9.-]+/g,"")));
+            // console.log('mpgList', mpgList.fuel_QTY, Number(currencyToNumber.replace(/[^0-9.-]+/g,"")));
             const costPerGallon = mpgList.fuel_QTY * Number(currencyToNumber.replace(/[^0-9.-]+/g,""));
             const numberToCurrency = USDollar.format(costPerGallon)
-            console.log('display date for return', date);
-
-         
-            
-            let mpg;
-            let currentItem = array[index];
-            let previousItem = array[index - 1];
-
-            console.log('current item', currentItem);
-            console.log('previous item', previousItem);
-
-            if (index > 0) {
-              mpg = (currentItem.odometer - previousItem.odometer) / currentItem.fuel_QTY;
-            } else {
-              mpg = 0;
-            }
-            
-              return (              
+            // console.log('display date for return', date);
+            return(
               <div key={mpgList.id} className='fuelInputs' >
                 <p>
                   {/* Current Item: {currentItem[index]} <br /> */}
-                  MPG: {mpg} <br />
+                  MPG: {calculateMPG(mpgList, index)}<br />
                   Date: {displayDate} <br />
                   Odometer: {mpgList.odometer} <br />
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
-                  Cost of Fill up: {numberToCurrency}</p>
+                  Cost of Fill up: {numberToCurrency} </p>
                 <button onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
               </div>              
-            )
+          )})}
             
-              })}
+            
         </div>
       )
  }

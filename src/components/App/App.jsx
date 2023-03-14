@@ -19,7 +19,7 @@ import FuelInputs from '../FuelInputs/FuelInputs';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import MainDetails from '../MainDetails/MainDetails';
+import MainDetails from '../MainDetails/MainDetailsv2';
 import EditVehicle from '../EditVehicle/EditVehicle';
 import EditFuelInputs from '../EditFuelInput/EditFuelInput';
 

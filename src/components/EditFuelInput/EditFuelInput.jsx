@@ -5,6 +5,7 @@ import { useState, useEffect} from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
+import './EditFuelInput.css';
 
 function EditFuelInputs() {
   const dispatch = useDispatch();
@@ -46,9 +47,10 @@ function handleSubmit(event) {
 // if (vehOdometer != 0){
 return (
     <>
-    <button onClick={() => history.goBack()}>Back to Details</button>
 
     <div className="container">
+      <button onClick={() => history.goBack()}>Back to Details</button>
+      
       <h2>Edit Fuel Record</h2>
 
       <form className="editFuelInput" onSubmit={handleSubmit}>
