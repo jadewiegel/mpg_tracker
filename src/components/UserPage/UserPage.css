@@ -2,3 +2,14 @@
     background-color:bisque;
     text-align: center;
 }
+
+.vehicleDisplay {
+    border-style: inset;
+    margin: 5px;
+    border-width: 5px;
+}
+
+.newVehicleInput {
+    border-style: inset;
+    border-width: 5px;
+}

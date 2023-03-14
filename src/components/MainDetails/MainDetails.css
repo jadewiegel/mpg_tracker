@@ -2,3 +2,27 @@
     background-color:bisque;
     text-align: center;
 }
+
+.highMPG {
+    border-style:outset;
+    border-width: 5px;
+}
+
+.averageMPG {
+    border-style: outset;
+    border-width: 5px;
+
+}
+
+.lowestMPG {
+    border-style: outset;
+    border-width: 5px;
+
+}
+
+.fuelInputs {
+    border-style: inset;
+    margin: 5px;
+    border-width: 5px;
+    
+}

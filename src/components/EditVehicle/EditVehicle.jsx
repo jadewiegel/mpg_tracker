@@ -48,8 +48,8 @@ function EditVehicle (){
         return (
             <>
             <div className='container'>
-                <h2>Edit Vehicle Page</h2>
-                <button onClick={() => history.goBack()}>Back to Vehicles</button>
+                <h2>Edit Vehicle Details</h2>
+                <button onClick={() => history.goBack()}>Back to Vehicles</button><br /><br />
 
                     <form className="editVehicleInput" onSubmit={handleSubmit}>
             

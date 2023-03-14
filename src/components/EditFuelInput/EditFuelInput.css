@@ -3,3 +3,7 @@
     text-align: center;
 }
 
+.editFuelInput {
+    border-style: inset;
+    border-width: 5px;
+}

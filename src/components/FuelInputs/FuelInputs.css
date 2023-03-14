@@ -2,3 +2,8 @@
     background-color:bisque;
     text-align: center;
 }
+
+.newFuelInput {
+    border-style: inset;
+    border-width: 5px;
+}
