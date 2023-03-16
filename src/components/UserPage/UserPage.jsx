@@ -5,10 +5,19 @@ import { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
 import './UserPage.css';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function UserPage() {
+  const classes = useStyles();
 
   const user = useSelector((store) => store.user);
   
@@ -60,8 +69,9 @@ function UserPage() {
           {vehicles.map((vehicle, index) => {
             return (
               <div key={vehicle.id} className='vehicleDisplay' >
-                <Button variant="outlined" color="black" className='vehicleClicker' onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</Button><br />
-                <Button variant="contained" onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</Button> <Button variant="contained" color="secondary" onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</Button>
+                <Button variant="outlined" className='vehicleClicker' size="large" onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</Button><br />
+                <Button variant="contained" size="small" onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</Button> 
+                <Button variant="contained" color="secondary" size="small" className={classes.button} startIcon={<DeleteIcon />} onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</Button>
               </div>
             )
           })}

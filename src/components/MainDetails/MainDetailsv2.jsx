@@ -5,9 +5,19 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import './MainDetails.css';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
 
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 function MainDetails() {
+  const classes = useStyles();
+
   const vehicle = useSelector((store) => store.vehicleReducer);
   const mpgStats = useSelector((store) => store.fuelReducer);
   const {id} = useParams();
@@ -138,9 +148,23 @@ function MainDetails() {
                   # of Gallons: {mpgList.fuel_QTY} <br />
                   Cost of Fill up: {numberToCurrency} <br />
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
-                  Date: {displayDate} <br />
+                  Date: {displayDate}
                 </h4>
-                <Button variant="contained" onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</Button> <Button variant="contained" color="secondary" onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</Button>
+                <Button 
+                  variant="contained" 
+                  size="small"
+                  onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>
+                  Edit Record
+                </Button> 
+                <Button 
+                  variant="contained" 
+                  color="secondary" 
+                  className={classes.button} 
+                  startIcon={<DeleteIcon />} 
+                  size="small"
+                  onClick={() => {fuelLogDeleteBtn(mpgList)}}>
+                    Delete Record
+                </Button>
               </div>              
           )})}
             

@@ -7,9 +7,19 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import './EditFuelInput.css';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import SaveIcon from '@material-ui/icons/Save';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 
 function EditFuelInputs() {
+  const classes = useStyles();
+
   const dispatch = useDispatch();
   const history = useHistory();
   const {id} = useParams();
@@ -70,7 +80,7 @@ return (
         <p>Price Per Gallon</p><input value={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
 
         {/* button to submit vehicle */}
-        <Button variant="contained" color="primary" type="Submit">Save</Button>
+        <Button variant="contained" color="primary" className={classes.button} startIcon={<SaveIcon />} type="Submit">Save</Button>
 
       </form>
     </div>

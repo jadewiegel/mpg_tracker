@@ -6,11 +6,20 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './EditVehicle.css';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import SaveIcon from '@material-ui/icons/Save';
 
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 
 
 function EditVehicle (){
+    const classes = useStyles();
+
     const user = useSelector((store) => store.user);
     
     const dispatch = useDispatch();
@@ -65,7 +74,7 @@ function EditVehicle (){
                         <input value={vehModel} placeholder={vehModel} onChange={(event) => setVehModel(event.target.value)} /><br />
                 
                         {/* button to submit vehicle */}
-                        <Button variant="contained" color="primary" type="Submit">Save</Button>
+                        <Button variant="contained" color="primary" className={classes.button} startIcon={<SaveIcon />} type="Submit">Save</Button>
         
                     </form>
             </div>
