@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import './EditFuelInput.css';
+import Button from '@material-ui/core/Button';
+
 
 function EditFuelInputs() {
   const dispatch = useDispatch();
@@ -68,7 +70,7 @@ return (
         <p>Price Per Gallon</p><input value={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
 
         {/* button to submit vehicle */}
-        <button type="Submit">Submit</button>
+        <Button variant="contained" color="primary" type="Submit">Submit</Button>
 
       </form>
     </div>

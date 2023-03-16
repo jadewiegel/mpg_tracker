@@ -6,6 +6,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import './FuelInputs.css';
+import Button from '@material-ui/core/Button';
+
 
 function FuelInputs() {
   const user = useSelector((store) => store.user);
@@ -36,7 +38,7 @@ function FuelInputs() {
   return (
     <>
       <div className="container">
-        <button onClick={() => history.goBack()}>Back to Details</button>
+        <Button variant="contained" onClick={() => history.goBack()}>Back to Details</Button>
         <h2>Input Fuel Stop Info</h2>
 
         <form className="newFuelInput" onSubmit={handleSubmit}>
@@ -54,7 +56,7 @@ function FuelInputs() {
             <p>Price Per Gallon</p><input defaultValue={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
 
             {/* button to submit vehicle */}
-            <button type="Submit">Submit</button>
+            <Button variant="contained" color="primary" type="Submit">Submit</Button>
 
           </form>
       </div>

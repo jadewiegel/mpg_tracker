@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import './MainDetails.css';
+import Button from '@material-ui/core/Button';
 
 
 function MainDetails() {
@@ -85,9 +86,10 @@ function MainDetails() {
       let mpgCurrent = item.odometer;
       let mpgPrevious = mpgStats[index+1].odometer;
       let gallons = item.fuel_QTY;
+      const totalInputs = mpgStats.length-1;
       mpg = Math.round((mpgCurrent - mpgPrevious) / gallons * 100)/100;
       count = mpg + count;
-      mpgAVG = Math.round(count / mpgStats.length * 100) / 100;
+      mpgAVG = Math.round(count / totalInputs * 100) / 100;
       console.log('mpg average math', mpgAVG);
     }
     return mpgAVG;
@@ -106,7 +108,8 @@ function MainDetails() {
           <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
 
           {/* button that takes user to fill up inputs Page*/}
-          <button onClick={clickHandler}>Add New Fill Up</button>
+          <Button variant="contained" onClick={clickHandler}>Add New Fill Up</Button>
+          <br /><br />
 
           {/* displays all mpg that has been logged */}
           {mpgStats.map((mpgList, index, array) => {
@@ -137,7 +140,7 @@ function MainDetails() {
                   Price Per Gallon: {mpgList.price_per_gallon} <br/>
                   Date: {displayDate} <br />
                 </h4>
-                <button onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</button> <button onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</button>
+                <Button variant="contained" onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>Edit Record</Button> <Button variant="contained" color="secondary" onClick={() => {fuelLogDeleteBtn(mpgList)}}>Delete Record</Button>
               </div>              
           )})}
             
