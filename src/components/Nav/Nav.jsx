@@ -12,6 +12,7 @@ function Nav() {
       <Link to="/home">
         <h2 className="nav-title">MPG Tracker</h2>
       </Link>
+      <br />
       
       <div>
         {/* If no user is logged in, show these links */}
@@ -20,20 +21,21 @@ function Nav() {
           <Link className="navLink" to="/login">
             Login / Register
           </Link>
+          
         )}
-
+        <br/ >
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
             <Link className="navLink" to="/user">
               Vehicles Page
             </Link>          
-              <br />
+              
             <LogOutButton className="navLink" />
-            <br />
+            
           </>
         )}
-
+        <br />
         <Link className="navLink" to="/about">
           About
         </Link>

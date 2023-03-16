@@ -1,5 +1,5 @@
 .container {
-    background-color:bisque;
+    /* background-color:bisque; */
     text-align: center;
 }
 
@@ -9,6 +9,7 @@
     border-width: 5px;
     border-radius: 20px;
     padding:10px;
+    background-color: rgb(201, 226, 231);
 }
 
 .newVehicleInput {
@@ -16,4 +17,5 @@
     border-width: 5px;
     border-radius: 25px;
     padding:10px;
+    background-color: rgb(201, 226, 231);
 }

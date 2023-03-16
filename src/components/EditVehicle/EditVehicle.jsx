@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import './EditVehicle.css';
+import Button from '@material-ui/core/Button';
+
 
 
 
@@ -49,7 +51,7 @@ function EditVehicle (){
             <>
             <div className='container'>
                 <h2>Edit Vehicle Details</h2>
-                <button onClick={() => history.goBack()}>Back to Vehicles</button><br /><br />
+                <Button variant="contained" onClick={() => history.goBack()}>Back to Vehicles</Button><br /><br />
 
                     <form className="editVehicleInput" onSubmit={handleSubmit}>
             
@@ -63,7 +65,7 @@ function EditVehicle (){
                         <input value={vehModel} placeholder={vehModel} onChange={(event) => setVehModel(event.target.value)} /><br />
                 
                         {/* button to submit vehicle */}
-                        <button type="Submit">Submit</button>
+                        <Button variant="contained" color="primary" type="Submit">Save</Button>
         
                     </form>
             </div>

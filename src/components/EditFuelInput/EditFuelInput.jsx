@@ -51,7 +51,7 @@ return (
     <>
 
     <div className="container">
-      <button onClick={() => history.goBack()}>Back to Details</button>
+      <Button variant="contained" onClick={() => history.goBack()}>Back to Details</Button>
       
       <h2>Edit Fuel Record</h2>
 
@@ -70,7 +70,7 @@ return (
         <p>Price Per Gallon</p><input value={pricePerGallon} placeholder="Price Per Gallon" onChange={(event) => setPricePerGallon(event.target.value)} /><br />
 
         {/* button to submit vehicle */}
-        <Button variant="contained" color="primary" type="Submit">Submit</Button>
+        <Button variant="contained" color="primary" type="Submit">Save</Button>
 
       </form>
     </div>

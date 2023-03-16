@@ -52,7 +52,7 @@ function UserPage() {
       {/* if there are any vehicles that user has input display here */}
       <h2>Welcome, {user.username}!</h2>
 
-      <h2>Select Your Vehicle</h2>
+      <h2>Select Vehicle</h2>
 
       {vehicles.length > 0
         ? <> 
@@ -60,7 +60,7 @@ function UserPage() {
           {vehicles.map((vehicle, index) => {
             return (
               <div key={vehicle.id} className='vehicleDisplay' >
-                <h3 className='vehicleClicker' onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</h3>
+                <Button variant="outlined" color="black" className='vehicleClicker' onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</Button><br />
                 <Button variant="contained" onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</Button> <Button variant="contained" color="secondary" onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</Button>
               </div>
             )
