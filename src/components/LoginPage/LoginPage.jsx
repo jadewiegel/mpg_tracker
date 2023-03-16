@@ -11,7 +11,7 @@ function LoginPage() {
   
   return (
     
-    <div className='header'>
+    <div className='container'>
       <LoginForm />
 
       <center>
