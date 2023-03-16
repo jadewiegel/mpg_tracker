@@ -7,9 +7,13 @@
     border-style: inset;
     margin: 5px;
     border-width: 5px;
+    border-radius: 20px;
+    padding:10px;
 }
 
 .newVehicleInput {
     border-style: inset;
     border-width: 5px;
+    border-radius: 25px;
+    padding:10px;
 }

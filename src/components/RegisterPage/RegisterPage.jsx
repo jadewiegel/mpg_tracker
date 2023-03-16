@@ -20,6 +20,8 @@ function RegisterPage() {
         >
           Login
         </button>
+        <img src="https://daregreatlynow.com/wp-content/uploads/2021/03/no-gas.jpg" />
+
       </center>
     </div>
   );

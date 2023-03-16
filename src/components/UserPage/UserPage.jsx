@@ -4,9 +4,12 @@ import {useSelector, useDispatch} from 'react-redux';
 import { useState, useEffect } from "react";
 import {useHistory} from 'react-router-dom';
 import './UserPage.css';
+import Button from '@material-ui/core/Button';
+
 
 
 function UserPage() {
+
   const user = useSelector((store) => store.user);
   
   const dispatch = useDispatch();
@@ -56,9 +59,9 @@ function UserPage() {
           {/* ^^this is only going to run once there is something in the array */}
           {vehicles.map((vehicle, index) => {
             return (
-              <div key={vehicle.id} className='vehicleDisplay'>
+              <div key={vehicle.id} className='vehicleDisplay' >
                 <h3 className='vehicleClicker' onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</h3>
-                <button onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</button> <button onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</button>
+                <Button variant="contained" onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</Button> <Button variant="contained" color="secondary" onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</Button>
               </div>
             )
           })}
@@ -81,7 +84,7 @@ function UserPage() {
         <input value={vehModel} placeholder="Vehicle Year" onChange={(event) => setVehModel(event.target.value)} /><br />
 
         {/* button to submit vehicle */}
-        <button type="Submit">Submit</button>
+        <Button variant="contained" color="primary" type="Submit">Submit</Button>
 
       </form>
       <br />

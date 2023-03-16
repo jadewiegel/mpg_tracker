@@ -28,8 +28,9 @@ function Nav() {
             <Link className="navLink" to="/user">
               Vehicles Page
             </Link>          
-
+              <br />
             <LogOutButton className="navLink" />
+            <br />
           </>
         )}
 

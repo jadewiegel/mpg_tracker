@@ -1,28 +1,29 @@
 .container {
-    background-color:bisque;
+    background-color:rgb(171, 199, 204);
     text-align: center;
 }
 
 .highMPG {
     border-style:outset;
     border-width: 5px;
+    border-radius: 15px;
 }
 
 .averageMPG {
     border-style: outset;
     border-width: 5px;
-
+    border-radius: 15px;
 }
 
 .lowestMPG {
     border-style: outset;
     border-width: 5px;
-
+    border-radius: 15px;
 }
 
 .fuelInputs {
     border-style: inset;
     margin: 5px;
     border-width: 5px;
-    
+    border-radius: 25px;
 }

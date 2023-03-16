@@ -1,9 +1,10 @@
 .container {
-    background-color:bisque;
+    /* background-color:bisque; */
     text-align: center;
 }
 
 .editFuelInput {
     border-style: inset;
     border-width: 5px;
+    border-radius: 25px;
 }

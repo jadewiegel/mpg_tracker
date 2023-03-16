@@ -1,9 +1,10 @@
 .container {
-    background-color:bisque;
+    /* background-color:bisque; */
     text-align: center;
 }
 
 .editVehicleInput {
     border-style: inset;
     border-width: 5px;
+    border-radius: 20px;
 }
