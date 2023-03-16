@@ -6,7 +6,7 @@ import { useHistory } from 'react-router-dom';
 import './MainDetails.css';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-
+import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
@@ -153,6 +153,8 @@ function MainDetails() {
                 <Button 
                   variant="contained" 
                   size="small"
+                  className={classes.button}
+                  startIcon={<EditRoundedIcon />}
                   onClick={() => history.push(`/editFuelInput/${mpgList.id}`)}>
                   Edit Record
                 </Button> 
