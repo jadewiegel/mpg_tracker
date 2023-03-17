@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import {useHistory} from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 function Nav() {
   const classes = useStyles();
-
+  const history = useHistory();
   const user = useSelector((store) => store.user);
 
   return (
@@ -41,7 +42,7 @@ function Nav() {
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Button color="default" className={classes.button} startIcon={<DirectionsCarIcon />} size="large"  to="/user">
+            <Button color="default" className={classes.button} startIcon={<DirectionsCarIcon />} size="large" onClick={() => history.push("/user")}>
               Vehicles
             </Button>         
             <LogOutButton className="navLink" />
@@ -49,7 +50,7 @@ function Nav() {
           </>
         )}
         
-        <Button color="default" className={classes.button} startIcon={<InfoIcon />} size='large' to="/about">
+        <Button color="default" className={classes.button} startIcon={<InfoIcon />} size='large' onClick={() => history.push("/about")}>
           About
         </Button>
       </div>
