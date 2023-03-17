@@ -8,13 +8,15 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
-
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    fontSize: 13,
+    fontWeight: 900,
   },
 }));
 
@@ -71,7 +73,14 @@ function UserPage() {
           {vehicles.map((vehicle, index) => {
             return (
               <div key={vehicle.id} className='vehicleDisplay' >
-                <Button variant="outlined" className='vehicleClicker' size="large" onClick = {() => history.push(`/mainDetails/${vehicle.id}`) }>{vehicle.year} {vehicle.make} {vehicle.model}</Button><br />
+                <Button 
+                  // variant="outlined" 
+                  size="large" 
+                  className={classes.button}
+                  startIcon={<ArrowForwardIcon />}
+                  onClick = {() => history.push(`/mainDetails/${vehicle.id}`)}>
+                    {vehicle.year} {vehicle.make} {vehicle.model}
+                    </Button><br />
                 <Button variant="contained" size="small" className={classes.button} startIcon={<EditRoundedIcon />} onClick={() => {vehEditBtn(vehicle)}}>Edit Vehicle</Button> 
                 <Button variant="contained" color="secondary" size="small" className={classes.button} startIcon={<DeleteIcon />} onClick={() => {vehDeleteBtn(vehicle)}}>Delete Vehicle</Button>
               </div>
@@ -90,10 +99,10 @@ function UserPage() {
         <input value={vehYear} placeholder="Vehicle Year" onChange={(event) => setVehYear(event.target.value)} /><br />
 
         {/* input for vehicle make */}
-        <input value={vehMake} placeholder="Vehicle Year" onChange={(event) => setVehMake(event.target.value)} /><br />
+        <input value={vehMake} placeholder="Vehicle Make" onChange={(event) => setVehMake(event.target.value)} /><br />
 
         {/* input for vehicle model */}
-        <input value={vehModel} placeholder="Vehicle Year" onChange={(event) => setVehModel(event.target.value)} /><br />
+        <input value={vehModel} placeholder="Vehicle Model" onChange={(event) => setVehModel(event.target.value)} /><br />
 
         {/* button to submit vehicle */}
         <Button variant="contained" color="primary" type="Submit">Submit</Button>

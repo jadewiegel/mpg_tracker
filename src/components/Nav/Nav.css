@@ -4,9 +4,9 @@
   justify-content: space-between;
   align-items: center;
   text-align: center;
-
+  
   margin: 0 0 0px;
-  background-color: #00acb0;
+  background-color: #48715e;
   overflow: hidden;
 }
 
@@ -15,21 +15,22 @@
 }
 
 .nav-title {
-  font-size: 40px;
+  font-size: 50px;
   font-weight: 700;
   color: #f2f2f2;
-  padding: 10px;
+  padding: 15px 0px 0px;
   margin: 0;
+  font-family:Arial, Helvetica, sans-serif;
 }
 
-.navLink {
+#navLink {
   display: inline-block;
-  color: #f2f2f2;
-  background-color: #00acb0;
-  text-align: center;
-  padding: 10px 10px;
+  /* color: #f2f2f2; */
+  /* background-color: #00acb0; */
+  justify-content:right;
+  padding: 0px 10px 10px 10px ;
   text-decoration: none;
-  font-size: 20px;
+  /* font-size: 20px; */
   
 
   /* these last two make the logout button in
@@ -43,3 +44,7 @@
   background-color: #008183;
 }
 
+.navMain {
+  padding: 00px 0px 10px;
+  text-align: center;
+}

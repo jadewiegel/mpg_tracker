@@ -3,18 +3,33 @@ import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
+import { makeStyles } from '@material-ui/core/styles';
+import LocalGasStationIcon from '@material-ui/icons/LocalGasStation';
+import InfoIcon from '@material-ui/icons/Info';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(.5),
+    fontSize: 15,
+    fontWeight: 800, 
+  },
+}));
 
 function Nav() {
+  const classes = useStyles();
+
   const user = useSelector((store) => store.user);
 
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">MPG Tracker</h2>
+        <h2 className="nav-title">MPG Tracker <LocalGasStationIcon fontSize="large" /></h2>
       </Link>
-      <br />
       
-      <div>
+      <div className='navMain'>
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
@@ -23,22 +38,20 @@ function Nav() {
           </Link>
           
         )}
-        <br/ >
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
-              Vehicles Page
-            </Link>          
-              
+            <Button color="default" className={classes.button} startIcon={<DirectionsCarIcon />} size="large"  to="/user">
+              Vehicles
+            </Button>         
             <LogOutButton className="navLink" />
             
           </>
         )}
-        <br />
-        <Link className="navLink" to="/about">
+        
+        <Button color="default" className={classes.button} startIcon={<InfoIcon />} size='large' to="/about">
           About
-        </Link>
+        </Button>
       </div>
     </div>
   );

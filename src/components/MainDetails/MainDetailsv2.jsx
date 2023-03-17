@@ -8,10 +8,13 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import EditRoundedIcon from '@material-ui/icons/EditRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
+import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    fontSize: 13,
+    fontWeight: 800,
   },
 }));
 
@@ -118,7 +121,7 @@ function MainDetails() {
           <h2>{vehicle.year} {vehicle.make} {vehicle.model}</h2>
 
           {/* button that takes user to fill up inputs Page*/}
-          <Button variant="contained" onClick={clickHandler}>Add New Fill Up</Button>
+          <Button variant="contained" color="alert" className={classes.button} startIcon={<AddIcon />} onClick={clickHandler}>Add New Fill Up</Button>
           <br /><br />
 
           {/* displays all mpg that has been logged */}

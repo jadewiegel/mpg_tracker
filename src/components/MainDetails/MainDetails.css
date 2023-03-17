@@ -1,5 +1,5 @@
 .container {
-    background-color:rgb(171, 199, 204);
+    background-color:rgb(202, 222, 202);
     text-align: center;
 }
 
@@ -7,28 +7,31 @@
     border-style:outset;
     border-width: 5px;
     border-radius: 15px;
+    padding: 3px;
 }
 
 .averageMPG {
     border-style: outset;
     border-width: 5px;
     border-radius: 15px;
+    padding: 3px;
 }
 
 .lowestMPG {
     border-style: outset;
     border-width: 5px;
     border-radius: 15px;
+    padding: 3px;
     /* background-color: rgb(201, 226, 231); */
  
 }
 
 .fuelInputs {
     border-style: inset;
-    margin: 5px;
+    margin: 5px 0px;
     border-width: 5px;
     border-radius: 25px;
-    padding: 10px;
+    /* padding: 10px; */
     background-color: rgb(201, 226, 231);
 
 }

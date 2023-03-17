@@ -9,7 +9,9 @@
     border-width: 5px;
     border-radius: 20px;
     padding:10px 0px;
-    background-color: rgb(201, 226, 231);
+    /* background-color: rgb(255, 255, 255); */
+    background-color: #ffffff;
+
 }
 
 .newVehicleInput {
@@ -17,7 +19,7 @@
     border-width: 5px;
     border-radius: 25px;
     padding:10px;
-    background-color: rgb(201, 226, 231);
+    background-color: rgb(255, 255, 255);
 }
 
 .editBTN {

@@ -12,6 +12,8 @@ import SaveIcon from '@material-ui/icons/Save';
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
+    fontSize: 15,
+    fontWeight: 800,
   },
 }));
 
